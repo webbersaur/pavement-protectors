@@ -131,23 +131,30 @@ header {
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+}
+
+.logo a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
 }
 
 .logo-img {
-  height: 70px;
+  height: 55px;
   width: auto;
+  max-width: 320px;
 }
 
-.logo h1 {
+.logo-text {
   color: var(--white);
   font-size: 1.5rem;
   font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
-.logo span {
-  color: var(--light-blue);
-  font-size: 0.875rem;
+.logo a:hover .logo-text {
+  color: #ff9999;
 }
 
 /* Navigation */
