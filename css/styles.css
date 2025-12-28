@@ -650,7 +650,7 @@ header {
 
 /* ===== Footer ===== */
 footer {
-  background-color: var(--primary-dark);
+  background-color: #5c0000;
   color: var(--white);
   padding: 60px 0 20px;
 }
@@ -683,11 +683,14 @@ footer {
 }
 
 .footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
   padding-top: 20px;
   text-align: center;
-  color: var(--gray-300);
+  color: rgba(255, 255, 255, 0.8);
   font-size: 0.875rem;
+  background-color: #4a0000;
+  margin: 0 -20px -20px;
+  padding: 20px;
 }
 
 /* ===== Utility Classes ===== */
