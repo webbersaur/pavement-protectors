@@ -204,14 +204,14 @@ p + p { margin-top: 1rem; }
 }
 
 .site-header.scrolled {
-  background: rgba(255, 255, 255, 0.97);
+  background: rgba(26, 26, 26, 0.97);
   backdrop-filter: blur(10px);
   padding: 0.5rem 0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
 }
 
 .site-header.scrolled .nav-links a {
-  color: var(--primary);
+  color: #FFFFFF;
 }
 
 .site-header.scrolled .nav-links a.active {
@@ -219,7 +219,7 @@ p + p { margin-top: 1rem; }
 }
 
 .site-header.scrolled .hamburger span {
-  background: var(--primary);
+  background: #FFFFFF;
 }
 
 .header-inner {
