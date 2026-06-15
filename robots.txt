@@ -1,0 +1,29 @@
+# robots.txt for Pavement Protectors
+# https://pavement-protectors.com
+
+User-agent: *
+Allow: /
+
+# AI / LLM crawlers welcome — see /llms.txt
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://pavement-protectors.com/sitemap.xml

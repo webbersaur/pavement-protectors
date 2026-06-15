@@ -1,0 +1,16 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/page/24790-:slug*", "destination": "/services.html", "permanent": true },
+    { "source": "/page/27113-:slug*", "destination": "/photos.html", "permanent": true },
+    { "source": "/page/24792-:slug*", "destination": "/promotions.html", "permanent": true },
+    { "source": "/page/24789-:slug*", "destination": "/faq.html", "permanent": true },
+    { "source": "/page/24799-:slug*", "destination": "/contact.html", "permanent": true },
+    { "source": "/page/24800-:slug*", "destination": "/services.html", "permanent": true },
+    { "source": "/page/28972-:slug*", "destination": "/reviews.html", "permanent": true },
+    { "source": "/page/28973-:slug*", "destination": "/reviews.html", "permanent": true },
+    { "source": "/page/28974-:slug*", "destination": "/reviews.html", "permanent": true },
+    { "source": "/page/:rest*", "destination": "/", "permanent": true }
+  ]
+}
