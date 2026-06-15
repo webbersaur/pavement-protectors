@@ -236,6 +236,15 @@
   var form = document.querySelector('.contact-form form');
 
   if (form) {
+    var statusEl = form.querySelector('.form-status');
+    var submitBtn = form.querySelector('button[type="submit"]');
+
+    function setStatus(msg, type) {
+      if (!statusEl) return;
+      statusEl.textContent = msg;
+      statusEl.style.color = type === 'error' ? '#e53e3e' : (type === 'success' ? '#2f855a' : '');
+    }
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
@@ -261,12 +270,41 @@
         }
       }
 
-      if (isValid) {
-        alert('Thank you for your message! We will get back to you within 24 hours.');
-        form.reset();
-      } else {
-        alert('Please fill in all required fields correctly.');
+      if (!isValid) {
+        setStatus('Please fill in all required fields correctly.', 'error');
+        return;
       }
+
+      var payload = {};
+      new FormData(form).forEach(function (value, key) { payload[key] = value; });
+
+      if (submitBtn) { submitBtn.disabled = true; }
+      var originalText = submitBtn ? submitBtn.textContent : '';
+      if (submitBtn) { submitBtn.textContent = 'Sending...'; }
+      setStatus('Sending your message...', '');
+
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+        .then(function (res) {
+          return res.json().then(function (data) { return { ok: res.ok, data: data }; });
+        })
+        .then(function (result) {
+          if (result.ok) {
+            setStatus('Thank you! We received your message and will get back to you within 24 hours.', 'success');
+            form.reset();
+          } else {
+            setStatus((result.data && result.data.error) || 'Something went wrong. Please call us at (203) 903-3273.', 'error');
+          }
+        })
+        .catch(function () {
+          setStatus('Network error. Please call us at (203) 903-3273.', 'error');
+        })
+        .finally(function () {
+          if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = originalText; }
+        });
     });
   }
 
