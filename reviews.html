@@ -98,19 +98,23 @@
     </div>
   </section>
 
-  <!-- Leave Review Section -->
-  <section class="section section-darker">
+  <!-- Rate Us Section -->
+  <section class="rate-us-section section-darker">
     <div class="container">
-      <div class="section-header reveal">
-        <h2>Share Your Experience</h2>
-        <div class="accent-line"></div>
-        <p>We'd love to hear about your experience with Pavement Protectors</p>
-      </div>
-      <div class="review-cta reveal">
-        <p>Your feedback helps us improve and helps other homeowners make informed decisions. Please take a moment to leave a review on one of these platforms:</p>
-        <div class="btn-group">
-          <a href="#" class="btn btn-primary">Review on Google</a>
-          <a href="#" class="btn btn-outline">Review on Facebook</a>
+      <div class="rate-us-content reveal">
+        <div class="rate-us-text">
+          <h2>How Was Your Experience?</h2>
+          <p>Your feedback means the world to us! Let us know how we did so we can keep protecting your pavement the right way.</p>
+          <button type="button" class="btn btn-primary" id="openRateUsModal">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-4px;margin-right:.4rem;">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+            Rate Us
+          </button>
+        </div>
+        <div class="rate-us-emojis" aria-hidden="true">
+          <span class="emoji-happy">&#128522;</span>
+          <span class="emoji-sad">&#128542;</span>
         </div>
       </div>
     </div>
@@ -185,6 +189,67 @@
       </div>
     </div>
   </footer>
+
+  <!-- Rate Us Modal -->
+  <div class="rate-modal-overlay" id="rateUsModal" role="dialog" aria-modal="true" aria-labelledby="rateModalTitle">
+    <div class="rate-modal">
+      <button type="button" class="rate-modal-close" id="closeRateUsModal" aria-label="Close">&times;</button>
+
+      <!-- State: choice -->
+      <div class="rate-modal-state" data-state="choice">
+        <h2 class="rate-modal-title" id="rateModalTitle">How Was Your Experience?</h2>
+        <p class="rate-modal-subtitle">We value your feedback!</p>
+        <div class="rate-modal-buttons">
+          <button type="button" class="rate-modal-btn rate-modal-btn-happy" data-go="happy">
+            <span class="rate-modal-btn-icon">&#128522;</span>
+            <span class="rate-modal-btn-text">Happy</span>
+          </button>
+          <button type="button" class="rate-modal-btn rate-modal-btn-sad" data-go="sad">
+            <span class="rate-modal-btn-icon">&#128542;</span>
+            <span class="rate-modal-btn-text">Not Happy</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- State: happy -->
+      <div class="rate-modal-state" data-state="happy" hidden>
+        <h2 class="rate-modal-title">Thank You! &#127881;</h2>
+        <p class="rate-modal-subtitle">We'd love it if you shared your experience:</p>
+        <div class="rate-modal-links">
+          <a href="https://www.google.com/maps?cid=1541480567200238135" target="_blank" rel="noopener" class="btn btn-primary">Review on Google</a>
+          <a href="https://www.facebook.com/Pavement-Protectors-714139855306797/reviews" target="_blank" rel="noopener" class="btn btn-outline">Review on Facebook</a>
+        </div>
+        <button type="button" class="rate-modal-back" data-go="choice">&larr; Back</button>
+      </div>
+
+      <!-- State: sad / private feedback -->
+      <div class="rate-modal-state" data-state="sad" hidden>
+        <h2 class="rate-modal-title">We're Sorry to Hear That</h2>
+        <p class="rate-modal-subtitle">Tell us what went wrong and we'll make it right. This goes straight to our team &mdash; not posted publicly.</p>
+        <form class="rate-feedback-form" novalidate>
+          <div class="form-group" aria-hidden="true" style="position:absolute;left:-9999px;height:0;overflow:hidden">
+            <label for="rf-company">Company</label>
+            <input type="text" id="rf-company" name="company" tabindex="-1" autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label for="rf-name">Your Name *</label>
+            <input type="text" id="rf-name" name="name" required placeholder="Your name">
+          </div>
+          <div class="form-group">
+            <label for="rf-email">Email <span style="font-weight:400;opacity:.7">(optional)</span></label>
+            <input type="email" id="rf-email" name="email" placeholder="your@email.com">
+          </div>
+          <div class="form-group">
+            <label for="rf-message">What happened? *</label>
+            <textarea id="rf-message" name="message" required placeholder="Tell us how we can do better..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;">Send Feedback</button>
+          <p class="rate-feedback-status" role="status" aria-live="polite" style="margin-top:.75rem;"></p>
+        </form>
+        <button type="button" class="rate-modal-back" data-go="choice">&larr; Back</button>
+      </div>
+    </div>
+  </div>
 
   <script src="js/main.js"></script>
 </body>

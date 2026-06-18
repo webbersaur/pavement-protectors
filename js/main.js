@@ -308,4 +308,103 @@
     });
   }
 
+  // --- Rate Us Modal (review gating) ---
+  var rateModal = document.getElementById('rateUsModal');
+  if (rateModal) {
+    var rateStates = rateModal.querySelectorAll('.rate-modal-state');
+
+    function showRateState(name) {
+      rateStates.forEach(function (s) {
+        s.hidden = (s.getAttribute('data-state') !== name);
+      });
+    }
+
+    function openRateModal() {
+      showRateState('choice');
+      rateModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeRateModal() {
+      rateModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    var openBtn = document.getElementById('openRateUsModal');
+    if (openBtn) { openBtn.addEventListener('click', openRateModal); }
+
+    var closeBtn = document.getElementById('closeRateUsModal');
+    if (closeBtn) { closeBtn.addEventListener('click', closeRateModal); }
+
+    // State navigation buttons (data-go="choice|happy|sad")
+    rateModal.querySelectorAll('[data-go]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        showRateState(this.getAttribute('data-go'));
+      });
+    });
+
+    // Close on overlay click / Escape
+    rateModal.addEventListener('click', function (e) {
+      if (e.target === rateModal) { closeRateModal(); }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && rateModal.classList.contains('active')) { closeRateModal(); }
+    });
+
+    // Private feedback form (Not Happy path) -> /api/contact
+    var fbForm = rateModal.querySelector('.rate-feedback-form');
+    if (fbForm) {
+      var fbStatus = fbForm.querySelector('.rate-feedback-status');
+      var fbBtn = fbForm.querySelector('button[type="submit"]');
+
+      function setFbStatus(msg, type) {
+        if (!fbStatus) return;
+        fbStatus.textContent = msg;
+        fbStatus.style.color = type === 'error' ? '#C41230' : (type === 'success' ? '#2E7D32' : '');
+      }
+
+      fbForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var nameInput = fbForm.querySelector('[name="name"]');
+        var msgInput = fbForm.querySelector('[name="message"]');
+        var ok = true;
+        [nameInput, msgInput].forEach(function (input) {
+          if (input && !input.value.trim()) { ok = false; input.style.borderColor = '#C41230'; }
+          else if (input) { input.style.borderColor = ''; }
+        });
+        if (!ok) { setFbStatus('Please add your name and a short message.', 'error'); return; }
+
+        var payload = { type: 'private-feedback' };
+        new FormData(fbForm).forEach(function (value, key) { payload[key] = value; });
+
+        if (fbBtn) { fbBtn.disabled = true; }
+        var fbOriginal = fbBtn ? fbBtn.textContent : '';
+        if (fbBtn) { fbBtn.textContent = 'Sending...'; }
+        setFbStatus('Sending your feedback...', '');
+
+        fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+          .then(function (res) { return res.json().then(function (data) { return { ok: res.ok, data: data }; }); })
+          .then(function (result) {
+            if (result.ok) {
+              setFbStatus('Thank you for your honesty. Our team will reach out to make it right.', 'success');
+              fbForm.reset();
+            } else {
+              setFbStatus((result.data && result.data.error) || 'Something went wrong. Please call us at (203) 903-3273.', 'error');
+            }
+          })
+          .catch(function () {
+            setFbStatus('Network error. Please call us at (203) 903-3273.', 'error');
+          })
+          .finally(function () {
+            if (fbBtn) { fbBtn.disabled = false; fbBtn.textContent = fbOriginal; }
+          });
+      });
+    }
+  }
+
 })();

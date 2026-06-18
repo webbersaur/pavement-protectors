@@ -33,14 +33,22 @@ module.exports = async (req, res) => {
   const service = (body.service || '').toString().trim();
   const message = (body.message || '').toString().trim();
   const honeypot = (body.company || '').toString().trim(); // spam trap (hidden field)
+  const isFeedback = (body.type || '').toString().trim() === 'private-feedback';
 
   // Silently accept and drop bot submissions.
   if (honeypot) return res.status(200).json({ ok: true });
 
-  if (!name || !email || !phone || !message) {
-    return res.status(400).json({ error: 'Please fill in your name, email, phone, and message.' });
+  if (isFeedback) {
+    // Private feedback (Not Happy path): name + message required, email optional.
+    if (!name || !message) {
+      return res.status(400).json({ error: 'Please add your name and a short message.' });
+    }
+  } else {
+    if (!name || !email || !phone || !message) {
+      return res.status(400).json({ error: 'Please fill in your name, email, phone, and message.' });
+    }
   }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return res.status(400).json({ error: 'Please enter a valid email address.' });
   }
 
@@ -48,30 +56,31 @@ module.exports = async (req, res) => {
     { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]
   ));
 
-  const rows = [
-    ['Name', name],
-    ['Email', email],
-    ['Phone', phone],
-    ['Property Address', address || '—'],
-    ['Service Needed', service || '—'],
-  ].map(([k, v]) => `<tr><td style="padding:4px 12px 4px 0;font-weight:bold;vertical-align:top">${k}</td><td style="padding:4px 0">${esc(v)}</td></tr>`).join('');
+  const heading = isFeedback
+    ? 'Private feedback (not happy) — Pavement Protectors'
+    : 'New quote request — Pavement Protectors';
+  const messageLabel = isFeedback ? 'What happened' : 'Message';
+
+  const fields = isFeedback
+    ? [['Name', name], ['Email', email || '—']]
+    : [['Name', name], ['Email', email], ['Phone', phone], ['Property Address', address || '—'], ['Service Needed', service || '—']];
+
+  const rows = fields
+    .map(([k, v]) => `<tr><td style="padding:4px 12px 4px 0;font-weight:bold;vertical-align:top">${k}</td><td style="padding:4px 0">${esc(v)}</td></tr>`)
+    .join('');
 
   const html = `
-    <h2 style="margin:0 0 12px">New quote request — Pavement Protectors</h2>
+    <h2 style="margin:0 0 12px">${heading}</h2>
     <table style="border-collapse:collapse;font-family:Arial,sans-serif;font-size:14px">${rows}</table>
-    <p style="font-family:Arial,sans-serif;font-size:14px;margin:16px 0 4px"><strong>Message</strong></p>
+    <p style="font-family:Arial,sans-serif;font-size:14px;margin:16px 0 4px"><strong>${messageLabel}</strong></p>
     <p style="font-family:Arial,sans-serif;font-size:14px;white-space:pre-wrap;margin:0">${esc(message)}</p>
   `;
 
-  const text = `New quote request — Pavement Protectors
+  const text = `${heading}
 
-Name: ${name}
-Email: ${email}
-Phone: ${phone}
-Property Address: ${address || '—'}
-Service Needed: ${service || '—'}
+${fields.map(([k, v]) => `${k}: ${v}`).join('\n')}
 
-Message:
+${messageLabel}:
 ${message}`;
 
   try {
@@ -84,8 +93,10 @@ ${message}`;
       body: JSON.stringify({
         from,
         to: [to],
-        reply_to: `${name} <${email}>`,
-        subject: `New quote request from ${name}${service ? ' — ' + service : ''}`,
+        ...(email ? { reply_to: `${name} <${email}>` } : {}),
+        subject: isFeedback
+          ? `Private feedback (not happy) — ${name}`
+          : `New quote request from ${name}${service ? ' — ' + service : ''}`,
         html,
         text,
       }),
