@@ -859,6 +859,19 @@ p + p { margin-top: 1rem; }
   color: var(--text-light);
 }
 
+.areas-list li a {
+  display: block;
+  margin: -0.75rem -1.5rem;
+  padding: 0.75rem 1.5rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.areas-list li:has(a):hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 /* --- CTA Banner --- */
 .cta-banner {
   position: relative;
