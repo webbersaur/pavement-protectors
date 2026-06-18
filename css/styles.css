@@ -231,27 +231,52 @@ p + p { margin-top: 1rem; }
   padding: 0 var(--container-pad);
 }
 
-.header-logo img {
-  height: 85px;
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.header-logo .logo-badge {
+  height: 64px;
   width: auto;
   transition: height var(--transition);
 }
 
-.header-logo .logo-scrolled {
-  display: none;
+.site-header.scrolled .header-logo .logo-badge {
+  height: 50px;
 }
 
-.site-header.scrolled .header-logo .logo-default {
-  display: none;
+.logo-wordmark {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  transition: all var(--transition);
 }
 
-.site-header.scrolled .header-logo .logo-scrolled {
-  display: block;
-  height: 60px;
+.logo-name {
+  color: #FFFFFF;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
-.site-header.scrolled .header-logo img {
-  height: 60px;
+.logo-sub {
+  color: var(--accent);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  margin-top: 0.2rem;
+}
+
+.site-header.scrolled .logo-name {
+  font-size: 1.2rem;
+}
+
+.site-header.scrolled .logo-sub {
+  font-size: 1rem;
 }
 
 .nav-links {
@@ -1634,6 +1659,19 @@ p + p { margin-top: 1rem; }
 @media (max-width: 480px) {
   :root {
     --container-pad: 1rem;
+  }
+
+  .header-logo .logo-badge {
+    height: 48px;
+  }
+
+  .logo-name {
+    font-size: 1.05rem;
+  }
+
+  .logo-sub {
+    font-size: 0.85rem;
+    letter-spacing: 0.14em;
   }
 
   .hero {
