@@ -333,6 +333,12 @@
     var openBtn = document.getElementById('openRateUsModal');
     if (openBtn) { openBtn.addEventListener('click', openRateModal); }
 
+    // Auto-open via shareable link: reviews.html?feedback (or #feedback)
+    if (/(^|[?&])feedback($|[=&])/.test(window.location.search) ||
+        window.location.hash === '#feedback') {
+      openRateModal();
+    }
+
     var closeBtn = document.getElementById('closeRateUsModal');
     if (closeBtn) { closeBtn.addEventListener('click', closeRateModal); }
 
