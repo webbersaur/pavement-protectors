@@ -750,6 +750,28 @@ p + p { margin-top: 1rem; }
   font-weight: 700;
 }
 
+.service-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  margin: 1.25rem 0 1.75rem;
+  padding: 1rem 1.25rem;
+  background: var(--bg-darker);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+}
+
+.service-note-check {
+  flex-shrink: 0;
+  color: var(--accent);
+  font-weight: 700;
+  line-height: var(--lh-body);
+}
+
+.service-note strong {
+  color: var(--text-light);
+}
+
 /* --- Pillars / Feature Cards --- */
 .pillars-grid {
   display: grid;
@@ -1291,102 +1313,6 @@ p + p { margin-top: 1rem; }
   max-height: 500px;
 }
 
-/* --- Promotions --- */
-.promo-card {
-  background: linear-gradient(135deg, var(--primary), #333333);
-  color: #FFFFFF;
-  padding: 3rem;
-  border-radius: var(--radius-lg);
-  text-align: center;
-  margin-bottom: 2.5rem;
-}
-
-.promo-card h3 {
-  color: #FFFFFF;
-  font-size: var(--fs-h2);
-  margin-bottom: 1rem;
-}
-
-.promo-card .price {
-  font-family: var(--font-heading);
-  font-size: 3rem;
-  font-weight: 700;
-  color: var(--accent);
-  margin-bottom: 1rem;
-}
-
-.promo-card p {
-  color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 1.5rem;
-}
-
-.promo-service-card {
-  text-align: center;
-  padding: 2.5rem 2rem;
-  background: var(--bg-card);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border-dark);
-  transition: all var(--transition);
-}
-
-.promo-service-card:hover {
-  border-color: var(--accent);
-  transform: translateY(-4px);
-}
-
-.promo-service-card h3 {
-  margin-bottom: 0.75rem;
-}
-
-.promo-service-card .price {
-  font-family: var(--font-heading);
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--accent);
-  margin: 1rem 0;
-}
-
-.promo-service-card p {
-  color: var(--text-muted);
-  font-size: var(--fs-small);
-  margin-bottom: 1.25rem;
-}
-
-/* Early bird / seasonal promo */
-.promo-highlight {
-  margin-top: 2.5rem;
-  background: var(--bg-darker);
-  padding: 2.5rem;
-  border-radius: var(--radius-lg);
-  text-align: center;
-}
-
-.promo-highlight h2 {
-  margin-bottom: 1rem;
-}
-
-.promo-highlight p {
-  max-width: 600px;
-  margin: 0 auto 1.5rem;
-  color: var(--text-muted);
-}
-
-/* Promo terms */
-.promo-terms {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.promo-terms ul {
-  list-style: disc;
-  margin-left: 1.5rem;
-}
-
-.promo-terms li {
-  margin-bottom: 0.75rem;
-  color: var(--text-muted);
-}
-
 /* --- Reviews Page --- */
 .review-summary {
   max-width: 600px;
@@ -1538,7 +1464,6 @@ p + p { margin-top: 1rem; }
 .service-card,
 .pillar-card,
 .testimonial-card,
-.promo-service-card,
 .faq-item {
   box-shadow: var(--shadow-sm);
 }
