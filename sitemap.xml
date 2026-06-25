@@ -123,7 +123,7 @@
   </url>
   <url>
     <loc>https://pavement-protectors.com/photos.html</loc>
-    <lastmod>2026-06-15</lastmod>
+    <lastmod>2026-06-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -157,6 +157,22 @@
     <image:image>
       <image:loc>https://pavement-protectors.com/images/crack-filling-madison.jpeg</image:loc>
       <image:title>Crack filling project in Madison</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pavement-protectors.com/images/hot-rubber-crack-filling-asphalt-ct.webp</image:loc>
+      <image:title>Hot rubber crack filling on asphalt pavement</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pavement-protectors.com/images/crack-filling-before-after-ct.webp</image:loc>
+      <image:title>Crack filling before and after on asphalt</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pavement-protectors.com/images/parking-lot-crack-sealing-ct.webp</image:loc>
+      <image:title>Commercial parking lot crack sealing</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pavement-protectors.com/images/hot-rubber-crack-sealing-application-ct.webp</image:loc>
+      <image:title>Hot rubber crack sealing application close-up</image:title>
     </image:image>
     <image:image>
       <image:loc>https://pavement-protectors.com/images/asphalt-repair-east-haven.jpeg</image:loc>
