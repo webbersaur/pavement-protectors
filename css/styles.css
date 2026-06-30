@@ -1481,6 +1481,10 @@ p + p { margin-top: 1rem; }
 }
 
 /* --- Responsive: 1024px --- */
+.btn-primary .cta-short {
+  display: none;
+}
+
 @media (max-width: 1024px) {
   .service-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1548,6 +1552,14 @@ p + p { margin-top: 1rem; }
   .nav-cta {
     margin-left: 0;
     margin-top: 1rem;
+  }
+
+  .btn-primary .cta-full {
+    display: none;
+  }
+
+  .btn-primary .cta-short {
+    display: inline;
   }
 
   .nav-overlay {
