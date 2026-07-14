@@ -308,7 +308,11 @@
     });
   }
 
-  // --- Rate Us Modal (review gating) ---
+  // --- Rate Us Modal ---
+  // No sentiment gate: the 'choice' state shows the Google/Facebook review links to
+  // everyone, and 'private' is an opt-in alternative reachable from it - never a fork
+  // that withholds the Google link from unhappy customers. That is "review gating",
+  // which Google prohibits and suspends Business Profiles over. Do not re-add a fork.
   var rateModal = document.getElementById('rateUsModal');
   if (rateModal) {
     var rateStates = rateModal.querySelectorAll('.rate-modal-state');
@@ -342,7 +346,7 @@
     var closeBtn = document.getElementById('closeRateUsModal');
     if (closeBtn) { closeBtn.addEventListener('click', closeRateModal); }
 
-    // State navigation buttons (data-go="choice|happy|sad")
+    // State navigation buttons (data-go="choice|private")
     rateModal.querySelectorAll('[data-go]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         showRateState(this.getAttribute('data-go'));
@@ -357,7 +361,7 @@
       if (e.key === 'Escape' && rateModal.classList.contains('active')) { closeRateModal(); }
     });
 
-    // Private feedback form (Not Happy path) -> /api/contact
+    // Private feedback form (opt-in "tell us privately" path) -> /api/contact
     var fbForm = rateModal.querySelector('.rate-feedback-form');
     if (fbForm) {
       var fbStatus = fbForm.querySelector('.rate-feedback-status');

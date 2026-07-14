@@ -1702,22 +1702,23 @@ p + p { margin-top: 1rem; }
   max-width: 520px;
 }
 
-.rate-us-emojis {
+.rate-us-stars {
   display: flex;
-  gap: var(--gap-sm);
+  gap: 0.15rem;
+  flex-shrink: 0;
 }
 
-.rate-us-emojis span {
-  font-size: 3.5rem;
+.rate-us-stars span {
+  font-size: 2.25rem;
+  line-height: 1;
   display: inline-block;
   transition: transform var(--transition);
 }
 
-.rate-us-emojis .emoji-happy:hover { transform: scale(1.2) rotate(5deg); }
-.rate-us-emojis .emoji-sad:hover { transform: scale(1.2) rotate(-5deg); }
+.rate-us-stars span:hover { transform: scale(1.2) rotate(5deg); }
 
 @media (min-width: 768px) {
-  .rate-us-emojis span { font-size: 4.5rem; }
+  .rate-us-stars span { font-size: 3rem; }
 }
 
 /* ---------- Rate Us Modal ---------- */
@@ -1797,55 +1798,31 @@ p + p { margin-top: 1rem; }
 
 .rate-modal-state[hidden] { display: none; }
 
-.rate-modal-buttons {
-  display: flex;
-  gap: var(--gap-sm);
-  justify-content: center;
-}
-
-.rate-modal-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 130px;
-  height: 130px;
-  border: none;
-  border-radius: var(--radius-lg);
-  cursor: pointer;
-  color: #FFFFFF;
-  font-family: var(--font-heading);
-  transition: all var(--transition);
-}
-
-.rate-modal-btn-happy { background: #2E7D32; }
-.rate-modal-btn-happy:hover {
-  background: #27692B;
-  transform: scale(1.05);
-  box-shadow: 0 8px 25px rgba(46, 125, 50, 0.4);
-}
-
-.rate-modal-btn-sad { background: var(--accent); }
-.rate-modal-btn-sad:hover {
-  background: var(--accent-hover);
-  transform: scale(1.05);
-  box-shadow: 0 8px 25px rgba(196, 18, 48, 0.35);
-}
-
-.rate-modal-btn-icon { font-size: 2.5rem; margin-bottom: 0.4rem; }
-.rate-modal-btn-text {
-  font-weight: 600;
-  font-size: var(--fs-small);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
 .rate-modal-links {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
 .rate-modal-links .btn { width: 100%; }
+
+.rate-modal-alt {
+  margin-top: 1.25rem;
+  margin-bottom: 0;
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+}
+
+.rate-modal-alt-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--accent);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.rate-modal-alt-link:hover { color: var(--accent-hover); }
 
 .rate-feedback-form {
   text-align: left;

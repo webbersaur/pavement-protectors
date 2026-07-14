@@ -39,7 +39,7 @@ module.exports = async (req, res) => {
   if (honeypot) return res.status(200).json({ ok: true });
 
   if (isFeedback) {
-    // Private feedback (Not Happy path): name + message required, email optional.
+    // Private feedback (opt-in "tell us privately" path): name + message required, email optional.
     if (!name || !message) {
       return res.status(400).json({ error: 'Please add your name and a short message.' });
     }
