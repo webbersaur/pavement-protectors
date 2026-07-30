@@ -86,25 +86,14 @@
   ],
   "redirects": [
     {
-      "source": "/",
+      "source": "/(.*)",
       "has": [
         {
           "type": "host",
           "value": "pavement-protectors.vercel.app"
         }
       ],
-      "destination": "https://pavement-protectors.com/",
-      "permanent": true
-    },
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "pavement-protectors.vercel.app"
-        }
-      ],
-      "destination": "https://pavement-protectors.com/:path*",
+      "destination": "https://pavement-protectors.com/$1",
       "permanent": true
     },
     {
