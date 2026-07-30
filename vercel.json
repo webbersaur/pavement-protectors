@@ -3,25 +3,159 @@
   "trailingSlash": false,
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/", "has": [{ "type": "host", "value": "easthavensealcoating.com" }], "destination": "/locations/east-haven/index.html" },
-    { "source": "/", "has": [{ "type": "host", "value": "www.easthavensealcoating.com" }], "destination": "/locations/east-haven/index.html" },
-    { "source": "/", "has": [{ "type": "host", "value": "newhavensealcoating.com" }], "destination": "/locations/new-haven/index.html" },
-    { "source": "/", "has": [{ "type": "host", "value": "www.newhavensealcoating.com" }], "destination": "/locations/new-haven/index.html" },
-    { "source": "/", "has": [{ "type": "host", "value": "branfordsealcoating.com" }], "destination": "/locations/branford/index.html" },
-    { "source": "/", "has": [{ "type": "host", "value": "www.branfordsealcoating.com" }], "destination": "/locations/branford/index.html" },
-    { "source": "/", "has": [{ "type": "host", "value": "guilfordsealcoating.com" }], "destination": "/locations/guilford/index.html" },
-    { "source": "/", "has": [{ "type": "host", "value": "www.guilfordsealcoating.com" }], "destination": "/locations/guilford/index.html" }
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "easthavensealcoating.com"
+        }
+      ],
+      "destination": "/locations/east-haven/index.html"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.easthavensealcoating.com"
+        }
+      ],
+      "destination": "/locations/east-haven/index.html"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "newhavensealcoating.com"
+        }
+      ],
+      "destination": "/locations/new-haven/index.html"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.newhavensealcoating.com"
+        }
+      ],
+      "destination": "/locations/new-haven/index.html"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "branfordsealcoating.com"
+        }
+      ],
+      "destination": "/locations/branford/index.html"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.branfordsealcoating.com"
+        }
+      ],
+      "destination": "/locations/branford/index.html"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "guilfordsealcoating.com"
+        }
+      ],
+      "destination": "/locations/guilford/index.html"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.guilfordsealcoating.com"
+        }
+      ],
+      "destination": "/locations/guilford/index.html"
+    }
   ],
   "redirects": [
-    { "source": "/page/24790-:slug*", "destination": "/services", "permanent": true },
-    { "source": "/page/27113-:slug*", "destination": "/photos", "permanent": true },
-    { "source": "/page/24792-:slug*", "destination": "/services", "permanent": true },
-    { "source": "/page/24789-:slug*", "destination": "/faq", "permanent": true },
-    { "source": "/page/24799-:slug*", "destination": "/contact", "permanent": true },
-    { "source": "/page/24800-:slug*", "destination": "/services", "permanent": true },
-    { "source": "/page/28972-:slug*", "destination": "/reviews", "permanent": true },
-    { "source": "/page/28973-:slug*", "destination": "/reviews", "permanent": true },
-    { "source": "/page/28974-:slug*", "destination": "/reviews", "permanent": true },
-    { "source": "/page/:rest*", "destination": "/", "permanent": true }
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "pavement-protectors.vercel.app"
+        }
+      ],
+      "destination": "https://pavement-protectors.com/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "pavement-protectors.vercel.app"
+        }
+      ],
+      "destination": "https://pavement-protectors.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/page/24790-:slug*",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/page/27113-:slug*",
+      "destination": "/photos",
+      "permanent": true
+    },
+    {
+      "source": "/page/24792-:slug*",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/page/24789-:slug*",
+      "destination": "/faq",
+      "permanent": true
+    },
+    {
+      "source": "/page/24799-:slug*",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/page/24800-:slug*",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/page/28972-:slug*",
+      "destination": "/reviews",
+      "permanent": true
+    },
+    {
+      "source": "/page/28973-:slug*",
+      "destination": "/reviews",
+      "permanent": true
+    },
+    {
+      "source": "/page/28974-:slug*",
+      "destination": "/reviews",
+      "permanent": true
+    },
+    {
+      "source": "/page/:rest*",
+      "destination": "/",
+      "permanent": true
+    }
   ]
 }
